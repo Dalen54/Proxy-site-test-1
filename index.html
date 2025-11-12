@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Private Web Search Launcher</title>
+<title>Ethical Research Web Search</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -52,31 +52,13 @@
 <body>
 
 <div class="search-box">
-  <h1>Launch DuckDuckGo Search</h1>
-  <p>Enter your search query below to open results in DuckDuckGo.</p>
-  <input type="text" id="searchInput" placeholder="Search the web securely...">
-  <button onclick="performSearch()">Search DuckDuckGo</button>
+  <h1>Ethical Research Web Search</h1>
+  <p>Use this tool for authorized web research via DuckDuckGo.</p>
+  <form id="searchForm" action="https://duckduckgo.com/" method="GET" target="_self">
+    <input type="text" id="searchInput" name="q" placeholder="Enter your research query...">
+    <button type="submit">Search DuckDuckGo</button>
+  </form>
 </div>
-
-<script>
-function performSearch() {
-  const query = document.getElementById('searchInput').value;
-  if (query) {
-    // Redirects the current page to DuckDuckGo with the search query
-    window.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
-  } else {
-    // If no query, just go to the main DuckDuckGo page
-    window.location.href = `https://duckduckgo.com/`;
-  }
-}
-
-// Allow pressing Enter to search
-document.getElementById('searchInput').addEventListener('keypress', function(event) {
-  if (event.key === 'Enter') {
-    performSearch();
-  }
-});
-</script>
 
 </body>
 </html>
