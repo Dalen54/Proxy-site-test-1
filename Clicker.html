@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AXY Clicker</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="grid"></div>
+
+<header>
+  <h1>AXY Study Site</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="notes.html">Notes</a>
+    <a href="bypasses.html">Bypasses</a>
+    <a href="music.html">Music</a>
+    <a href="credits.html">Credits</a>
+    <a href="other1.html">Suggestions/Reports</a>
+    <a href="other2.html">Other</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>AXY Clicker</h2>
+  <p>Basic clicker demo — expand as needed.</p>
+</section>
+
+<main>
+<div class="notice">AXY Clicker demo — click to earn points, buy upgrades.</div>
+<button id="clickerBtn">Click me!</button>
+<div id="clickCount" style="margin-top:12px;font-size:1.6rem">0</div>
+<div style="margin-top:12px;">
+  <button class="upgrade" id="up1">+1 per click (cost 50)</button>
+  <button class="upgrade" id="up2">Auto +1/sec (cost 200)</button>
+</div>
+<script>
+// simple clicker logic (keeps state in session only)
+(function(){
+  const btn = document.getElementById('clickerBtn');
+  const cnt = document.getElementById('clickCount');
+  const up1 = document.getElementById('up1');
+  const up2 = document.getElementById('up2');
+  let score = 0, perClick = 1, auto = 0;
+  function update(){ cnt.textContent = score; }
+  btn.addEventListener('click', ()=>{ score += perClick; update(); });
+  up1.addEventListener('click', ()=>{ if(score>=50){ score-=50; perClick+=1; update(); alert('Bought +1 per click'); } else alert('Not enough'); });
+  up2.addEventListener('click', ()=>{ if(score>=200){ score-=200; auto+=1; update(); alert('Bought auto +1/sec'); } else alert('Not enough'); });
+  setInterval(()=>{ if(auto>0){ score += auto; update(); } },1000);
+})();
+</script>
+
+</main>
+
+<footer>© 2025 AXY Study Site. All rights reserved.</footer>
+
+<!-- Theme Box -->
+<div id="themeBox">
+  Theme:
+  <select id="themeSelect">
+    <option value="red">Red</option>
+    <option value="navy">Navy Blue</option>
+    <option value="green">Cyber Green</option>
+    <option value="purple">Purple</option>
+    <option value="custom">Customize...</option>
+  </select>
+</div>
+
+<!-- Customize Panel -->
+<div id="customPanel">
+  <div><label>Main:</label><input type="color" id="mainColor" value="#ff1e1e"></div>
+  <div><label>Glow:</label><input type="color" id="glowColor" value="#ff3c3c"></div>
+  <div><label>Trail:</label><input type="color" id="trailColor" value="#ff3232"></div>
+  <div><label>Ambient:</label><input type="color" id="ambientColor" value="#ff3232"></div>
+  <div><label>Body BG:</label><input type="color" id="bgColor" value="#190000"></div>
+  <div><label>Hero BG:</label><input type="color" id="heroBgColor" value="#190000"></div>
+  <div><label>Footer BG:</label><input type="color" id="footerBgColor" value="#0a0000"></div>
+  <button id="saveCustom">Save Theme</button>
+  <button id="resetTheme">Reset to Red</button>
+</div>
+
+<script src="theme.js"></script>
+</body>
+</html>
